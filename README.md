@@ -24,9 +24,11 @@ students = [
 upper_case_full_names = []
 
 ```
-
 ### Answer
 
+ students.each{|x|
+  upper_case_full_names.push(x[:first_name].upcase+" "+x[:last_name].upcase)
+ }
 ```rb
 
 [ 'AHMED ALTHAGAFI', 'NORAH ALSHEHRI', 'HANEEN ALGHAMDI' ]
@@ -81,7 +83,8 @@ first_order_for_each_user = []
 ```
 
 ### Answer
-
+i=0
+users.each{|x| first_order_for_each_user[i]={description: x[:orders][0]} i=i+1}
 ```rb
 
 [ {description: "a bike"}, {description: "bees"}, {description: "a MacBook"} ]
@@ -151,7 +154,20 @@ coffee_average_per_person = []
 ```
 
 ### Answer
-
+i=0
+people.each{|x| array[i]={ name:x[:name]}
+  avg=0
+  count=0
+  x[:transactions].each{|y|
+    if y[:type]=="COFFEE"
+      count= count+1
+       avg= avg+y[:amount]
+     end
+   }
+   array[i][:coffee_average]=avg/count
+    i=i+1
+ }
+puts array
 ```rb
 
 [ 
@@ -213,7 +229,19 @@ most_expensive_products_by_store = []
 ```
 
 ### Answer
-
+ stores.each{|x|
+  array=[]
+  x[:products].each{|y|
+     array.push(y[:price])
+if y[:price]==array.max
+      puts x[:store_name]
+     puts y[:description]
+      puts y[:price]
+     end
+   }
+ }
+ i tried to use this command but it didn't works 
+ // most_expensive_products_by_store.push({store_name:x[:store_name],most_expensive_product:{y[:description],y[:price]}})
 ```rb
 
 [ 
